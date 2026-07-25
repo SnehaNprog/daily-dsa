@@ -1,5 +1,5 @@
-# Binary executable
+# Compiled binary executable
 daily-dsa
 
-# Secret config with API Key (keep template config.json in git)
-# config.json
+# Secret config with API Key - NEVER commit to git!
+config.json

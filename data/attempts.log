@@ -1,1 +1,2 @@
 {"Date":"2026-07-17","Slug":"valid-palindrome","Topic":"Two Pointers","Difficulty":"Easy","Rating":1,"UsedHint":true}
+{"Date":"2026-07-25","Slug":"best-time-to-buy-and-sell-stock","Title":"Best Time to Buy and Sell Stock","URL":"https://leetcode.com/problems/best-time-to-buy-and-sell-stock/","Topic":"Array / String","Difficulty":"Easy","Rating":2,"UsedHint":true,"ReviewNotes":"Time: O(N) | Space: O(1) | Verdict: Optimal"}
