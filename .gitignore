@@ -1,0 +1,5 @@
+# Binary executable
+daily-dsa
+
+# Secret config with API Key (keep template config.json in git)
+# config.json
