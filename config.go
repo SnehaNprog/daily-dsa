@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 type Config struct {
@@ -11,37 +12,42 @@ type Config struct {
 	ModelName    string `json:"model_name,omitempty"`
 }
 
-// LoadConfig reads config.json from the current directory.
+// LoadConfig reads config.json or environment variables securely.
 func LoadConfig() Config {
 	configPath := "config.json"
+	key := ""
+	model := "gemini-2.5-flash"
+
 	data, err := os.ReadFile(configPath)
 	if err != nil {
-		// Fallback check in parent or data dir
 		data, err = os.ReadFile(filepath.Join("data", "config.json"))
-		if err != nil {
-			return Config{
-				GeminiAPIKey: "",
-				ModelName:    "gemini-2.5-flash",
+	}
+
+	if err == nil {
+		var cfg Config
+		if err := json.Unmarshal(data, &cfg); err == nil {
+			key = strings.TrimSpace(cfg.GeminiAPIKey)
+			if cfg.ModelName != "" {
+				model = cfg.ModelName
 			}
 		}
 	}
 
-	var cfg Config
-	if err := json.Unmarshal(data, &cfg); err != nil {
-		return Config{
-			GeminiAPIKey: "",
-			ModelName:    "gemini-2.5-flash",
-		}
+	// Fallback to environment variable if config.json key is empty
+	if key == "" {
+		key = strings.TrimSpace(os.Getenv("GEMINI_API_KEY"))
+	}
+	if key == "" {
+		key = strings.TrimSpace(os.Getenv("GOOGLE_API_KEY"))
 	}
 
-	if cfg.ModelName == "" {
-		cfg.ModelName = "gemini-2.5-flash" // Default free model
+	return Config{
+		GeminiAPIKey: key,
+		ModelName:    model,
 	}
-
-	return cfg
 }
 
-// SaveConfig updates config.json with the given API key.
+// SaveConfig updates local config.json (which is git-ignored).
 func SaveConfig(key string) error {
 	cfg := Config{
 		GeminiAPIKey: key,

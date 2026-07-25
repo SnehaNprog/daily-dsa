@@ -32,9 +32,9 @@ func SaveSolution(p Problem, solution, ext string) error {
 
 // GitCommitAndPush stages solution, attempts log, and PROGRESS.md, commits, and pushes to remote repository.
 func GitCommitAndPush(p Problem, a Attempt) error {
-	// 1. Stage modified files
+	// 1. Stage modified files (explicitly excluding config.json to keep secret API key private)
 	fmt.Println("  🔄 Staging solution, log, and PROGRESS.md...")
-	if err := runGit("add", "solutions", "data/attempts.log", "PROGRESS.md", "config.json"); err != nil {
+	if err := runGit("add", "solutions", "data/attempts.log", "PROGRESS.md", "config.example.json", ".gitignore"); err != nil {
 		fmt.Printf("  ⚠️ Warning staging git files: %v\n", err)
 	}
 

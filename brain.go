@@ -7,9 +7,19 @@ import (
 	"io"
 	"math/rand"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 )
+
+// Problem represents a single LeetCode problem.
+type Problem struct {
+	Slug       string `json:"slug"`
+	Title      string `json:"title"`
+	URL        string `json:"url"`
+	Topic      string `json:"topic"`
+	Difficulty string `json:"difficulty"`
+}
 
 // GeminiProblemResponse represents the AI brain's recommendation output.
 type GeminiProblemResponse struct {
@@ -53,7 +63,7 @@ func (b *Brain) HasAPIKey() bool {
 	return strings.TrimSpace(b.APIKey) != ""
 }
 
-// FetchDailyProblem asks Gemini AI Brain to pick today's LeetCode problem from the whole LeetCode universe.
+// FetchDailyProblem asks Gemini AI Brain to pick today's LeetCode problem from the whole LeetCode universe using PROGRESS.md state context.
 func (b *Brain) FetchDailyProblem(rp RoadmapProgress, attempts []Attempt) (Problem, string, error) {
 	solvedSlugs := make(map[string]bool)
 	for _, a := range attempts {
@@ -80,9 +90,16 @@ func (b *Brain) callGeminiForProblem(rp RoadmapProgress, targetDiff string, solv
 		solvedList = append(solvedList, s)
 	}
 
+	// Read PROGRESS.md for complete state context if available
+	progressContext := ""
+	if data, err := os.ReadFile("PROGRESS.md"); err == nil {
+		progressContext = fmt.Sprintf("\nHere is the user's complete PROGRESS.md tracker file:\n--- PROGRESS.md START ---\n%s\n--- PROGRESS.md END ---\n", string(data))
+	}
+
 	prompt := fmt.Sprintf(`You are Gemini (%s), an expert AI DSA Coach guiding a beginner through Data Structures & Algorithms.
-The user is currently at Stage %d in their DSA Roadmap.
-Active Topic: "%s". Target Difficulty: "%s".
+%s
+Current Learning Target:
+Stage %d in DSA Roadmap. Active Topic: "%s". Target Difficulty: "%s".
 Already solved problem slugs: %s.
 
 Task:
@@ -97,7 +114,7 @@ Respond strictly in valid JSON with this schema (no markdown formatting outside 
   "difficulty": "%s",
   "concept_tip": "A concise 1-2 sentence core intuition hint for a beginner tackling this problem.",
   "why_chosen": "Why this problem fits their current roadmap progression."
-}`, b.Model, rp.ActiveStage, rp.ActiveTopic, targetDiff, strings.Join(solvedList, ", "), rp.ActiveTopic, targetDiff, rp.ActiveTopic, targetDiff)
+}`, b.Model, progressContext, rp.ActiveStage, rp.ActiveTopic, targetDiff, strings.Join(solvedList, ", "), rp.ActiveTopic, targetDiff, rp.ActiveTopic, targetDiff)
 
 	respText, err := b.queryGeminiAPI(prompt)
 	if err != nil {
