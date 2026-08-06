@@ -2,16 +2,19 @@
 
 > **Active Stage**: Stage 1 - Active Focus Topic: **Array / String** (Easy)  
 > **Target Strategy**: Easy Phase 🟢: Build confidence in 'Array / String' with Easy problems until comfortable (Avg Rating ≥ 3.5).  
-> **Topics Mastered**: 0 / 15 | **Total Solved**: 6 | **Streak**: 5 Days  
+> **Topics Mastered**: 0 / 15 | **Total Solved**: 7 | **Current Streak**: 1 Day 🔥 | **Best Streak**: 2 Days ⚡  
 > **AI Brain**: Gemini 2.5 Flash (Free Tier) 🧠
 
 ---
 
 ## 📊 Overall Performance Statistics
 
-- **Total Solved**: 6 Problems
-- **Difficulty Breakdown**: 🟢 Easy: 6 | 🟡 Medium: 0 | 🔴 Hard: 0
-- **Average Self-Rating**: 1.7 / 5.0 ⭐
+- **Total Solved**: 7 Problems
+- **Current Daily Streak**: 1 Day 🔥
+- **Best Historical Streak**: 2 Days ⚡
+- **Total Active Solved Days**: 5 Days 📅
+- **Difficulty Breakdown**: 🟢 Easy: 7 | 🟡 Medium: 0 | 🔴 Hard: 0
+- **Average Self-Rating**: 1.9 / 5.0 ⭐
 - **Revision Sessions Completed**: 0
 
 ---
@@ -20,7 +23,7 @@
 
 | Stage | Topic | Phase Status | Solved (E/M/H) | Ratings (E/M/H) | Progress |
 | :---: | :--- | :---: | :---: | :---: | :--- |
-| Stage 1 | Array / String | 🟢 Easy Phase | E:4 M:0 H:0 | 2.0 / - / - | `███░░░░░░░` 33% |
+| Stage 1 | Array / String | 🟢 Easy Phase | E:5 M:0 H:0 | 2.2 / - / - | `███░░░░░░░` 33% |
 | Stage 1 | Hash Map | 🔒 Locked | E:1 M:0 H:0 | 1.0 / - / - | `░░░░░░░░░░` 0% |
 | Stage 2 | Two Pointers | 🔒 Locked | E:1 M:0 H:0 | 1.0 / - / - | `░░░░░░░░░░` 0% |
 | Stage 2 | Sliding Window | 🔒 Locked | E:0 M:0 H:0 | - / - / - | `░░░░░░░░░░` 0% |
@@ -42,6 +45,7 @@
 
 | Date | Topic | Problem | Difficulty | Session Type | Rating | Hint | Notes |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| 2026-08-06 | Array / String | [Majority Element](https://leetcode.com/problems/majority-element/) | 🟢 Easy | Practice | 3/5 | Yes 💡 | Time: O(N) | Space: O(1) | Verdict: Optimal |
 | 2026-08-06 | Array / String | [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) | 🟢 Easy | Practice | 2/5 | No | Time: O(N) | Space: O(1) | Verdict: Optimal |
 | 2026-07-28 | Hash Map | [Valid Anagram](https://leetcode.com/problems/valid-anagram/) | 🟢 Easy | Practice | 1/5 | Yes 💡 | Time: O(N) | Space: O(1) | Verdict: Optimal |
 | 2026-07-26 | Array / String | [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) | 🟢 Easy | Practice | 2/5 | No | Time: O(N) | Space: O(1) | Verdict: Optimal |
